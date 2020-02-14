@@ -9,6 +9,27 @@ Keycloak is an Open Source Identity and Access Management solution for modern Ap
 This repository contains the source code for the Keycloak Node.js adapter. This module makes it simple to implement a Node.js Connect-friendly
 application that uses Keycloak for its authentication and authorization needs. 
 
+## Changes made in this fork (`keycloak-nodejs-connect`)
+Support configuration of authentication server URL that should be used for backend requests. The configuration is made using `internal-auth-server-url` in keycloak.json. 
+
+This is particulary useful when:
+1. You using this `keycloak-nodejs-connect` to integrate a reverse proxy to Keycloak;
+2. Keycloak itself is running behind your proxy;
+3. You want the requests your reverse proxy makes to Keycloak bypass the proxy.
+
+Example:
+```js
+{
+  "realm" : "nodejs-example",
+  "auth-server-url" : "https://localhost/auth",
+  "internal-auth-server-url" : "http://localhost:8080/auth",
+  "ssl-required" : "external",
+  "resource" : "nodejs-connect",
+  "public-client" : true
+}
+```
+
+
 ## Help and Documentation
 
 * [Documentation](https://www.keycloak.org/documentation.html)

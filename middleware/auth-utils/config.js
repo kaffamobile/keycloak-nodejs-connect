@@ -125,10 +125,24 @@ Config.prototype.configure = function configure (config) {
   this.authServerUrl = (resolveValue(config['auth-server-url'] || config['server-url'] || config.serverUrl || config.authServerUrl) || '').replace(/\/*$/gi, '');
 
   /**
+   * Authentication server URL for backend requests. Useful when keycloak is behind a reverse proxy and you want to bypass the reverse proxy 
+   * for requests initiated by the proxy itself. Optional: defaults to 'auth-server-url'
+   * @type {String}
+   */  
+  this.internalAuthServerUrl = resolveValue(config['internal-auth-server-url'] || this.authServerUrl);
+
+  /**
    * Root realm URL.
    * @type {String}
    */
   this.realmUrl = this.authServerUrl + '/realms/' + this.realm;
+
+  /**
+   * Root realm URL for backend requests. Useful when keycloak is behind a reverse proxy and you want to bypass the reverse proxy 
+   * for requests initiated by the proxy itself.
+   * @type {String}
+   */  
+  this.internalRealmUrl = this.internalAuthServerUrl + '/realms/' + this.realm;
 
   /**
    * Root realm admin URL.

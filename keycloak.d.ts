@@ -20,6 +20,7 @@ declare namespace KeycloakConnect {
   interface KeycloakConfig {
     'confidential-port': string|number
     'auth-server-url': string
+    'internal-auth-server-url': string
     'resource': string
     'ssl-required': string
     'bearer-only'?: boolean
